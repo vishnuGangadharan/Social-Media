@@ -4,10 +4,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from '@/services/zodeSchema/login';
 import { z } from "zod";
-
-
+import { login } from '@/api/user';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '@/redux/slice/userSlice'; 
+import { useNavigate } from 'react-router-dom';
 type LoginFormInputs = z.infer<typeof loginSchema>
 const Login: React.FC  = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     const {
         register,
@@ -23,8 +29,22 @@ const Login: React.FC  = () => {
       });
 
 
-      const onSubmit = (data: LoginFormInputs) => {
-        console.log(data);
+      const onSubmit = async (data: LoginFormInputs) => {
+        try {
+            const response = await login(data)
+            console.log('....',response);
+            if(response?.status == 200){
+                localStorage.setItem('token',response.data.token)
+                dispatch(setUserData(response.data.data))
+                toast.success(response.data.message)
+                navigate('/')
+                
+            }
+            
+        } catch (error) {
+            console.log('Error:', error);
+            
+        }
       };
 
     return (

@@ -81,7 +81,7 @@ const OTP = () => {
                 toast.success(response.data.message);
                 localStorage.removeItem('otpStartTime');
                 localStorage.setItem('token', response.data.token);
-                navigate('/');
+                navigate('/login');
             }
         } catch (error) {
             console.log(error);
@@ -98,6 +98,7 @@ const OTP = () => {
                 localStorage.setItem('otpStartTime', currentTime.toString());
                 setTimer(180); // Reset the timer
                 setIsResendEnabled(false);
+
             }
         } catch (error) {
             console.log(error);

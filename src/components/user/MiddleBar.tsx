@@ -7,7 +7,8 @@ const MiddleBar = () => {
       <div className='flex'>
       <Status/>
       </div>
-      <div className='overflow-y-auto h-[calc(100vh-xx)]'>
+      <div className=' overflow-y-auto h-[calc(100vh-100px)] scrollbar-hide'>
+
       <Post/>
       </div>
     </div>

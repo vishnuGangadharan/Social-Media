@@ -1,3 +1,4 @@
+import { UserInfo } from "os";
 import { userFormData } from "./user";
 
 export interface PostTypes {
@@ -16,4 +17,9 @@ export interface commentTypes {
     comment?: string;
     userId?: userFormData;
     postId?: PostTypes;
+}
+
+export interface ProfileTypes {
+    user : userFormData | null
+    post : PostTypes[]
 }

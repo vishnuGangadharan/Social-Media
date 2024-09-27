@@ -8,6 +8,7 @@ const userRoutes = {
     login: '/user/login',
     postData: '/user/postData',
     postComment:'/user/postComment',
+    userData:'/user/userData',
 }
 
 export default userRoutes

@@ -11,11 +11,11 @@ import store from './redux/store.ts'
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-  <StrictMode>
+  {/* <StrictMode> */}
   <NextUIProvider>
     <App />
     <ToastContainer />
   </NextUIProvider>
-  </StrictMode>
+  {/* </StrictMode> */}
   </Provider>
 )

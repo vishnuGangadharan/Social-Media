@@ -79,3 +79,15 @@ export const postComment = async(data : commentTypes) => {
         errorHandler(err)
     }
 }
+
+export const userDetails = async(userId : string) => {
+    try {
+        const response = await Api.get(userRoutes.userData ,{params: {userId}} )
+        return response
+        
+    } catch (error) {
+        const err:Error = error as Error
+        errorHandler(err)
+        
+    }
+}

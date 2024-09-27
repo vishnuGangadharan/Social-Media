@@ -1,30 +1,41 @@
-import React from 'react';
-import { Avatar } from '@nextui-org/react';
+
+import { Card } from "flowbite-react";
+import {Avatar} from "@nextui-org/react";
+
 
 const RightBar = () => {
   return (
-    <div className='w-[30%] h-screen bg-black/85 p-5'>
-      <div className='flex justify-between items-center mt-5'>
-        <span className='text-white text-xl font-bold ml-10'>Suggested for you</span>
-        <span className='text-blue-400 cursor-pointer hover:underline mr-7 '>View all</span>
+    <div className='w-[30%] h-screen bg-black/85 p-5 '>
+    <Card className="max-w-sm bg-black mt-10">
+      <div className="mb-4 flex items-center justify-between">
+        <h5 className="text-xl font-bold leading-none text-white dark:text-white">friend suggestions</h5>
+        <a href="#" className="text-sm font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+          View all
+        </a>
       </div>
-      <div className='flex items-center mt-10 bg-gray-800 p-4 rounded-md'>
-        {/* Avatar */}
-        <Avatar
-          isBordered
-          color="success"
-          className='w-12 h-12'
-          src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
-        />
-        {/* Name */}
-        <div className='ml-4'>
-          <p className='text-white text-lg font-semibold hover:text-blue-400 cursor-pointer transition duration-200'>John Doe</p>
-          <p className='text-gray-400 text-sm'>@johndoe</p> {/* Optional: Add a username */}
-        </div>
-        <span className='text-blue-500 text-sm font-semibold ml-auto cursor-pointer hover:underline mr-5'>Follow</span>
-      </div>
-    </div>
-  );
-};
+      <div className="flow-root">
+        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+          <li className="py-3 sm:py-4">
+            <div className="flex items-center space-x-4">
+              <div className="shrink-0">
+              <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" size="md" />
 
-export default RightBar;
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-white dark:text-white">Neil Sims</p>
+                <p className="truncate text-sm text-gray-500 dark:text-gray-400">email@windster.com</p>
+              </div>
+              <div 
+              className="inline-flex items-center text-base font-semibold text-white dark:text-white cursor-pointer hover:text-blue-500">
+                Follow</div>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </Card>
+    </div>
+  )
+}
+
+export default RightBar

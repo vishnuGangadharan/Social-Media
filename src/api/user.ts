@@ -91,3 +91,35 @@ export const userDetails = async(userId : string) => {
         
     }
 }
+
+export const followUser = async(userId: string) => {
+    try {
+        const response = await Api.post(userRoutes.follow , {userId})
+        return response
+    } catch (error) {
+        const err:Error = error as Error
+        errorHandler(err)
+    }
+}
+
+export const getAllUsers = async(userId: string) => {
+    try {
+        const response = await Api.get(userRoutes.AllUsers , {params:{ userId}})
+        return response.data
+    } catch (error) {
+        const err:Error = error as Error
+        errorHandler(err)
+    }
+}
+
+
+export const allVideos= async() =>{
+    try {
+        const response = await Api.get(userRoutes.allVideos)
+        
+    } catch (error) {
+        const err:Error = error as Error
+        errorHandler(err)
+    }
+}
+

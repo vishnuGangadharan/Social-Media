@@ -3,9 +3,11 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 import React, { useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { toast } from "react-toastify";
+import { setPostData } from "@/redux/slice/postSlice";
+
 interface PopUpProps {
   text: string;
   icon: React.ReactNode;
@@ -21,6 +23,7 @@ const CreatePost: React.FC<PopUpProps> = ({text,icon}) => {
 
     const { userInfo } = useSelector((state: RootState) => state.auth);
     
+    const dispatch = useDispatch();
 
     const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
 
@@ -78,9 +81,10 @@ const CreatePost: React.FC<PopUpProps> = ({text,icon}) => {
       }         
         const response = await addPost(formData)
         handleModalClose()
-        console.log('.....',response);
+        console.log('.....post',response);
         if(response && response.status === 200){
           toast.success(response.data.message)
+          dispatch(setPostData(response.data.data))
         }
       }catch(error){
         console.log(error);

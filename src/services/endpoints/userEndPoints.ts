@@ -9,6 +9,10 @@ const userRoutes = {
     postData: '/user/postData',
     postComment:'/user/postComment',
     userData:'/user/userData',
+    follow : '/user/follow',
+    AllUsers: '/user/allUsers',
+    allVideos: '/user/allVideos'
+
 }
 
 export default userRoutes

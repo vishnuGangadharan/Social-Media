@@ -9,6 +9,9 @@ const Home = lazy(() => import ('../pages/user/Home'))
 const Profile = lazy(() => import ('../pages/user/Profile'))
 const ProtectedRoutes = lazy(() => import ('../protectRoutes/UserProtect'))
 const UserLogout = lazy(() => import ('../protectRoutes/UserLogout'))
+const Reels = lazy(() => import ('../pages/user/Reels'))
+
+
 const UserRoutes = () => {
   return (
    <Suspense fallback={<div>Loading...</div>}>
@@ -22,6 +25,7 @@ const UserRoutes = () => {
         <Route path="/" element= {<Home/>} />
         <Route  element={<UserLayout/>}>
             <Route path="/profile" element= {<Profile/>} />
+            <Route path="/reels" element= {<Reels/>} />
         </Route>
         </Route>
     </Routes>

@@ -5,15 +5,25 @@ import { FaEdit } from "react-icons/fa";
 import UserPosts from "./UserPosts";
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { userDetails } from "@/api/user";
+import { followUser, userDetails } from "@/api/user";
 import { ProfileTypes } from "@/services/interface/post";
+import { useLocation } from 'react-router-dom';
+
 
 const Profile = () => {
 
-    const  { userInfo } = useSelector((state:RootState) => state.auth)
-    const userId = userInfo._id
-    const [data, setData] = useState<ProfileTypes | undefined>(undefined)
+    const location = useLocation();
+    const { userId } = location.state || {};
+     console.log('.....',userId);
+
+     const {postData } = useSelector((state: RootState ) => state.post)
+     console.log('.....',postData);
+     const [data, setData] = useState<ProfileTypes | undefined>(undefined)
     
+      useEffect(() => {
+        
+    },[userId])
+      
     const getUserDetails = async()=>{
         try{
         const response = await userDetails(userId)
@@ -32,7 +42,19 @@ const Profile = () => {
         getUserDetails()
     },[userId])   
 
-console.log(data?.user?.name);
+  
+
+const followClick = async(userId: string) =>{
+    try {
+        const response = await followUser(userId)
+        console.log('res',response);
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+}
 
 
     return (
@@ -77,12 +99,12 @@ console.log(data?.user?.name);
                     </div>
                         <span className="text-sm text-gray-500 dark:text-gray-400">{data && data.user?.email} </span>
                     <div className="mt-4 flex space-x-3 lg:mt-6">
-                        <a
-                            href="#"
+                        <button
+                           onClick={() => followClick(data?.user?._id ?? '')}
                             className="inline-flex items-center rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                         >
                             Add friend
-                        </a>
+                        </button>
                         <a
                             href="#"
                             className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"

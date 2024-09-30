@@ -3,8 +3,8 @@ import Status from './Middilepage/Status'
 import Post from './Middilepage/Post'
 const MiddleBar = () => {
   return (
-    <div className='w-[60%] h-screen overflow-hidden bg-black'>
-      <div className='flex'>
+    <div className='  h-screen overflow-hidden bg-black'>
+      <div className=''>
       <Status/>
       </div>
       <div className='overflow-y-auto h-[calc(100vh-xx)]'>

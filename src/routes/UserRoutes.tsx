@@ -1,40 +1,39 @@
-import { Route, Routes } from "react-router-dom"
-import { Suspense, lazy } from "react"
-import UserLayout from "@/Layout/UserLayout"
+import { Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import UserLayout from "@/Layout/UserLayout"; // Ensure correct path
 
-const SignUp = lazy(() => import("../pages/user/SignUp"))
-const Login = lazy(() => import ('../pages/user/Login'))
-const OTP = lazy(() => import ('../pages/user/OTP'))
-const Home = lazy(() => import ('../pages/user/Home'))
-const Profile = lazy(() => import ('../pages/user/Profile'))
-const ProtectedRoutes = lazy(() => import ('../protectRoutes/UserProtect'))
-const UserLogout = lazy(() => import ('../protectRoutes/UserLogout'))
-const Reels = lazy(() => import ('../pages/user/Reels'))
-
+// Lazy load components
+const SignUp = lazy(() => import("../pages/user/SignUp"));
+const Login = lazy(() => import("../pages/user/Login"));
+const OTP = lazy(() => import("../pages/user/OTP"));
+const Home = lazy(() => import("../pages/user/Home"));
+const Profile = lazy(() => import("../pages/user/Profile"));
+const Reels = lazy(() => import("../pages/user/Reels"));
+const ProtectedRoutes = lazy(() => import("../protectRoutes/UserProtect"));
+const UserLogout = lazy(() => import("../protectRoutes/UserLogout"));
 
 const UserRoutes = () => {
   return (
-   <Suspense fallback={<div>Loading...</div>}>
     <Routes>
-      <Route element={<UserLogout/>}>
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/login" element= {<Login/>} />
-        <Route path="/otp" element= {<OTP/>} />
+      {/* Public routes */}
+      <Route element={<UserLogout />}>
+        {/* Individual Suspense for each route */}
+        <Route path="/signup" element={<Suspense fallback={<div>Loading Sign Up...</div>}><SignUp /></Suspense>} />
+        <Route path="/login" element={<Suspense fallback={<div>Loading Login...</div>}><Login /></Suspense>} />
+        <Route path="/otp" element={<Suspense fallback={<div>Loading OTP...</div>}><OTP /></Suspense>} />
+      </Route>
+
+      {/* Protected routes */}
+      <Route element={<ProtectedRoutes />}>
+        <Route element={<UserLayout />}>
+          {/* Individual Suspense for protected routes */}
+          <Route path="/" element={<Suspense fallback={<div>Loading Home...</div>}><Home /></Suspense>} />
+          <Route path="/profile" element={<Suspense fallback={<div>Loading Profile...</div>}><Profile /></Suspense>} />
+          <Route path="/reels" element={<Suspense fallback={<div>Loading Reels...</div>}><Reels /></Suspense>} />
         </Route>
-        <Route element={<ProtectedRoutes/>}>
-        <Route path="/" element= {<Home/>} />
-        <Route  element={<UserLayout/>}>
-            <Route path="/profile" element= {<Profile/>} />
-            <Route path="/reels" element= {<Reels/>} />
-        </Route>
-        </Route>
+      </Route>
     </Routes>
+  );
+};
 
-   </Suspense>
-  )
-}
-
-export default UserRoutes
-
-//https://res.cloudinary.com/dfzpyl4bi/image/upload/v1727327660/post/xqdf9nvyunsgyrypkq6w.jpg
-//https://res.cloudinary.com/dfzpyl4bi/image/upload/v1727327660/post/qqhlwbyupnx15qiv5jfo.jpg
+export default UserRoutes;

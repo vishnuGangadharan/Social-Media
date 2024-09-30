@@ -116,7 +116,7 @@ export const getAllUsers = async(userId: string) => {
 export const allVideos= async() =>{
     try {
         const response = await Api.get(userRoutes.allVideos)
-        
+        return response.data
     } catch (error) {
         const err:Error = error as Error
         errorHandler(err)

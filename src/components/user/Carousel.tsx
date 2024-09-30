@@ -20,7 +20,7 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
         {images && images.map((img, indx) => (
           <CarouselItem key={`image-${indx}`}>
             <img
-              className="max-w-full h-full rounded-md w-full flex justify-center items-center"
+              className="h-[400px] w-full object-cover rounded-md" // Fixed height and full width with cover
               src={img}
               alt={`image-${indx}`}
             />
@@ -30,10 +30,11 @@ const Carousels: React.FC<CarouselsProps> = ({ images, videos }) => {
         {videos && videos.map((video, indx) => (
           <CarouselItem key={`video-${indx}`}>
             <video
-              className="max-w-full h-full rounded-md w-full flex justify-center items-center"
-              // controls
+              className="h-[400px] w-full object-cover rounded-md" // Consistent size with object-fit
               autoPlay 
               loop
+              muted
+              controls
             >
               <source src={video} type="video/mp4" />
               Your browser does not support the video tag.

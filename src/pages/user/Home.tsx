@@ -4,10 +4,10 @@ import MiddleBar from '@/components/user/MiddleBar'
 import RightBar from '@/components/user/RightBar'
 const Home = () => {
   return (
-    <div className='flex h-screen'>
-      <LeftSideBar/>
+    <div className='flex justify-center items-center w-full h-screen bg-black'>
+    
       <MiddleBar/>
-      <RightBar/>
+     
     </div>
   )
 }

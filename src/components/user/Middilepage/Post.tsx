@@ -55,7 +55,7 @@ const Post = () => {
 
   return (
     <div className='h-screen flex justify-center'>
-      <div id="post-container" className='border border-2 rounded-xl border-gray-500 w-[60%] h-[80vh] overflow-y-auto p-4 scrollbar-hide mb-10'>
+      <div id="post-container" className='border border-2 rounded-xl border-gray-500 w-[50%] h-[80vh] overflow-y-auto p-4 scrollbar-hide mb-10'>
         {postedData && postedData.length > 0 ? (
           postedData.map((post, indx) => (
             <div key={indx} className='mb-4 border-b border-gray-600 pb-4'>

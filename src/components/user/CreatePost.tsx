@@ -20,6 +20,7 @@ const CreatePost: React.FC<PopUpProps> = ({text,icon}) => {
     const [preview, setPreview] = React.useState<string[]>([]);
     const [error, setError] = useState<{content?: string, files?: string}>({})
     const [content, setContent] = useState<string>('')
+    
 
     const { userInfo } = useSelector((state: RootState) => state.auth);
     
@@ -141,11 +142,14 @@ const CreatePost: React.FC<PopUpProps> = ({text,icon}) => {
                       </div>
                     ): (
                       <div className="relative">
-                      <MdDeleteForever 
-                      className="absolute top-1 right-1  cursor-pointer hover:text-red-700"
+                      <MdDeleteForever
+                        className="absolute top-1 right-1 cursor-pointer bg-red-400 hover:text-red-700 z-10"
+                        onClick={() => handleDeleteSelectFile(index)}
+                        style={{ zIndex: 10 }} 
                       />
-                      <video src={preview} controls  className="w-24 h-24 object-cover"/>
-                      </div>
+                      <video src={preview} controls className="w-24 h-24 object-cover z-0" />
+                    </div>
+                    
                     )}
 
                   </div>

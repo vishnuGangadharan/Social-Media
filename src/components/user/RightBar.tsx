@@ -26,7 +26,7 @@ const RightBar = () => {
 
   useEffect(() => {
     allUsers()
-  }, [])
+  }, [userId])
   return (
     <div className='w-[30%] h-screen bg-black/85 p-5 '>
       <Card className="max-w-sm bg-black mt-10">

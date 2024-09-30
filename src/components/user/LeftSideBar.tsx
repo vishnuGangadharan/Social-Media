@@ -47,10 +47,11 @@ const LeftSideBar = () => {
           </ListboxItem>
 
           <ListboxItem textValue='reels' key="reels" className="hover:bg-gray-700 w-[80%] items-center mx-auto rounded-lg transition-colors">
-            <div className="flex items-center gap-4 px-3 py-2 text-xl">
+          <Link to='/reels'> 
+          <div className="flex items-center gap-4 px-3 py-2 text-xl">
               <FcFilmReel size={24} />
               <span>Reels</span>
-            </div>
+            </div></Link> 
           </ListboxItem>
 
           <ListboxItem textValue='message' key="messages" className="hover:bg-gray-700 w-[80%] items-center mx-auto rounded-lg transition-colors">
